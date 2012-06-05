@@ -6,8 +6,11 @@ module TwitterAnalyzerSpec
     end
     it "should return an empty word list after init" do
       @wc.word_list.should be_true
+      @wc.word_list.size.should == 0
     end
     it "should add new words" do
+      @wc.add_word("hello")
+      @wc.word_list.size.should == 1
     end
       
   end
