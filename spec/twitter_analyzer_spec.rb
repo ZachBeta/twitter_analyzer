@@ -17,6 +17,11 @@ module TwitterAnalyzerSpec
       @wc.add_word("world")
       @wc.word_list.size.should == 2
     end
+    it "should add one word multiple times" do
+      @wc.add_word("hello")
+      @wc.add_word("hello")
+      @wc.word_list["hello"].should == 2
+    end
       
   end
 end
