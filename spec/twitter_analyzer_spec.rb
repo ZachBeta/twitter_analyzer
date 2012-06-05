@@ -22,6 +22,18 @@ module TwitterAnalyzerSpec
       @wc.add_word("hello")
       @wc.word_list["hello"].should == 2
     end
+    it "should return a list of all words sorted desc" do
+      @wc.add_word("hello")
+      @wc.add_word("hello")
+      @wc.add_word("world")
+      @wc.all_words.should == ["hello","world"]
+    end
+    it "should return a list of all words sorted desc 2" do
+      @wc.add_word("world")
+      @wc.add_word("hello")
+      @wc.add_word("hello")
+      @wc.all_words.should == ["hello","world"]
+    end
       
   end
 end

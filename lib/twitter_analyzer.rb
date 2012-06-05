@@ -12,4 +12,10 @@ class WordCounter
     @word_list[incoming_word] += 1
   end
 
+  def all_words
+    a = @word_list.sort_by {|k,v| v}.reverse
+    @word_list = Hash[*a.flatten]
+    @word_list.keys
+  end
+
 end
