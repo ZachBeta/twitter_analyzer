@@ -1,5 +1,4 @@
-Write a library that sorts and prints the words in a given twitter user’s last 1000
-tweets sorted by frequency of use.
+Write a library that sorts and prints the words in a given twitter user’s last 1000 tweets sorted by frequency of use.
 
 For example, if jack had tweeted:
 “hello world”
@@ -13,10 +12,6 @@ and
 hi
 everyone
 
-You can find the twitter api docs here: https://dev.twitter.com/docs/api/1/get/statuses/
-user_timeline
+You can find the twitter api docs here: https://dev.twitter.com/docs/api/1/get/statuses/user_timeline
 
-Feel free to do this in any language, but if you’re comfortable in Ruby, Python,
-Javascript, Java or Scala those are easier for us. Send us a link to a git repo or a
-tarball of your code. Make sure to include a sample invocation somewhere in your
-response.
+Feel free to do this in any language, but if you’re comfortable in Ruby, Python, Javascript, Java or Scala those are easier for us. Send us a link to a git repo or a tarball of your code. Make sure to include a sample invocation somewhere in your response.
