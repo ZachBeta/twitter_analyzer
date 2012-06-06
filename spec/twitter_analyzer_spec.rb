@@ -1,6 +1,6 @@
 require 'spec_helper'
 module TwitterAnalyzerSpec
-  describe "When called" do
+  describe "WordCounter" do
     before(:each) do
       @wc = WordCounter.new
     end
@@ -34,6 +34,8 @@ module TwitterAnalyzerSpec
       @wc.add_word("hello")
       @wc.all_words.should == ["hello","world"]
     end
+  end
       
+  describe "Twitter API"
   end
 end
