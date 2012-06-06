@@ -4,6 +4,7 @@ module TwitterAnalyzerSpec
     before(:each) do
       @wc = WordCounter.new
     end
+    it "should not reveal its internal hash"
     it "should return an empty word list after init" do
       @wc.word_list.should be_true
       @wc.word_list.size.should == 0
@@ -36,6 +37,16 @@ module TwitterAnalyzerSpec
     end
   end
       
-  describe "Twitter API"
+  describe "Twitter API" do
+    it "should grab tweets for a user" 
+    it "should grab the next 'page' of tweets for a user" 
+    it "should be able to return multiple 'pages' of tweets for a user" 
+    it "should return x number of tweets for a user" 
+  end
+
+  describe "Tweet Array Parser" do
+    it "should flatten the array" 
+    it "should take that result and parse it" 
+    it "should output those results" 
   end
 end
