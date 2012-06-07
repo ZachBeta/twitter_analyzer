@@ -52,12 +52,16 @@ class TweetArrayParser
     @tweet_array = array
   end
 
-  def flat_array
-    just_tweet_text = []
+  def tweet_text
+    just_tweet_text = ""
     @tweet_array.each do |tweet|
-      just_tweet_text.concat(tweet.full_text)
+      just_tweet_text.concat(" " + tweet.text.to_s)
     end
     just_tweet_text
+  end
+
+  def tweet_word_array
+    self.tweet_text.split(/[\s,]+/)
   end
 
 end

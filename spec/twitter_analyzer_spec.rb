@@ -69,23 +69,27 @@ module TwitterAnalyzerSpec
   describe "Tweet Array Parser" do
     before :each do
       tweet_array = []
-      tweet_array << Twitter::Status.new(:full_text => "hello world")
-      tweet_array << Twitter::Status.new(:full_text => "hello everyone, and world")
-      tweet_array << Twitter::Status.new(:full_text => "hi world")
+      tweet_array << Twitter::Status.new('text' => "hello world")
+      tweet_array << Twitter::Status.new('text' => "hello everyone, and world")
+      tweet_array << Twitter::Status.new('text' => "hi world")
       @tap = TweetArrayParser.new(tweet_array)
     end
     it "should take an array initializer" do
       tweet_array = []
-      tweet_array << Twitter::Status.new(:full_text => "hello world")
-      tweet_array << Twitter::Status.new(:full_text => "hello everyone, and world")
-      tweet_array << Twitter::Status.new(:full_text => "hi world")
+      tweet_array << Twitter::Status.new('text' => "hello world")
+      tweet_array << Twitter::Status.new('text' => "hello everyone, and world")
+      tweet_array << Twitter::Status.new('text' => "hi world")
       @tap.tweet_array.should == tweet_array
     end
-    it "should flatten the array" do
-      @tap.flat_array.size.should == 3
+    it "should flatten the array to a long string" do
+      @tap.tweet_text.is_a?(String).should be_true
+      @tap.tweet_text.include?("hello").should be_true
     end
-    it "should take that result and parse it" 
-    it "should output those results" 
+    it "should take that result and parse it" do
+      @tap.tweet_word_array.is_a?(Array).should be_true
+      @tap.tweet_word_array.include?("hello").should be_true
+      @tap.tweet_word_array.count("hello").should == 2
+    end
   end
 
   describe "The actual twitter_analyzer" do
