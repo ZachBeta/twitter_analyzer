@@ -1,4 +1,5 @@
 require 'twitter'
+require 'ruby-debug'
 
 class WordCounter
   attr_reader :word_list
@@ -23,38 +24,24 @@ class WordCounter
 end
 
 class TwitterWrapper
-  def initialize
-    @tweets = []
+  def initialize(user_name)
+    @tweets = Twitter.user_timeline(user_name, :count => 200)
+    begin
+      tweets = Twitter.user_timeline(user_name, :count => 200, :max_id => @tweets.last.id - 1)
+      @tweets.concat tweets
+    end until @tweets.size > 1000 or tweets.size == 0 
   end
 
   def tweets
-    @tweets.uniq
+    @tweets
   end
 
-  #keeps appending so long as the request is shorter
-  def grab_tweets_for(user_name, params={:count => 10})
-    #TODO refactor this confusing mess
-    if(params[:count] > 200)
-      if @tweets.size > 0
-        @tweets.concat Twitter.user_timeline(user_name, :count => 200, :max_id => @tweets.last.id)
-      else
-        @tweets.concat Twitter.user_timeline(user_name, :count => 200)
-      end
-      grab_tweets_for(user_name, {:count => params[:count] - 200})
+  def latest_tweets(params={:count => 10})
+    if(@tweets.size < params[:count])
+      return @tweets.slice(0..@tweets.size - 1)
     else
-      if @tweets.size > 0
-        @tweets.concat Twitter.user_timeline(user_name, :count => params[:count], :max_id => @tweets.last.id)
-      else
-        @tweets.concat Twitter.user_timeline(user_name, :count => params[:count])
-      end
+      return @tweets.slice(0..params[:count] - 1)
     end
-  end
-
-  def latest_tweets(user_name, params={:count => 10})
-    if(@tweets.uniq.size < params[:count])
-      grab_tweets_for(user_name, {:count => params[:count] - @tweets.uniq.size })
-    end
-    return @tweets.slice(0..params[:count] - 1)
   end
 end
 
