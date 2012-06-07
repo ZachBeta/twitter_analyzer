@@ -1,3 +1,3 @@
 watch('.*/.*\.rb') do |m|
-  system('rake')
+  system('clear && rake')
 end
