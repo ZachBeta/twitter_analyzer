@@ -4,7 +4,6 @@ module TwitterAnalyzerSpec
     before(:each) do
       @wc = WordCounter.new
     end
-    it "should not reveal its internal hash"
     it "should return an empty word list after init" do
       @wc.word_list.should be_true
       @wc.word_list.size.should == 0
@@ -49,8 +48,7 @@ module TwitterAnalyzerSpec
       @tw.latest_tweets({:count => 500}).size.should == 500
     end
     it "should return x number of tweets for a user" do
-      @tw.latest_tweets({:count => 50})
-      @tw.tweets.size.should == 50
+      @tw.latest_tweets({:count => 50}).size.should == 50
     end
     it "should return x number of unique tweets for a user" do
       tweet_ids = []
