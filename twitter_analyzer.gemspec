@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = 'twitter_analyzer'
-  s.version       = '0.0.1'
+  s.version       = '0.1.0'
   s.summary       = 'Determine which words occur most frequently in a user\'s tweets'
   s.description   = 'Takes an arbitrary username, gets the top 1000 tweets then returns the most frequently occuring words'
   s.authors       = ["Zach Morek"]

@@ -65,3 +65,26 @@ class TweetArrayParser
   end
 
 end
+
+class TwitterAnalyzer
+
+  attr_reader :parsed_tweets
+
+  def initialize(user_name)
+    @twitter_wrapper = TwitterWrapper.new(user_name)
+    @parsed_tweets = TweetArrayParser.new(@twitter_wrapper.tweets).tweet_word_array
+    @word_counter = WordCounter.new
+    @parsed_tweets.each do |word|
+      @word_counter.add_word(word)
+    end
+  end
+
+  def tweets
+    @twitter_wrapper.latest_tweets({:count => 1000 })
+  end
+
+  def words_most_used_desc
+    @word_counter.all_words
+  end
+    
+end

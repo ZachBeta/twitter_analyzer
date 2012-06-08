@@ -79,6 +79,7 @@ module TwitterAnalyzerSpec
       tweet_array << Twitter::Status.new('text' => "hi world")
       @tap.tweet_array.should == tweet_array
     end
+    #TODO this could definitely use a refactor
     it "should flatten the array to a long string" do
       @tap.tweet_text.is_a?(String).should be_true
       @tap.tweet_text.include?("hello").should be_true
@@ -90,10 +91,20 @@ module TwitterAnalyzerSpec
     end
   end
 
+  #This is where the testing gets wonky and I want to pair
+  #There's a way to stub out a fake analyzer, but I'm not sure right now
   describe "The actual twitter_analyzer" do
-    it "should take grab tweets"
-    it "should parse those tweets"
-    it "should count the words"
-    it "should bake a mean banana bread"
+    before(:each) do
+      @ta = TwitterAnalyzer.new('twitter')
+    end
+    it "should grab tweets" do
+      @ta.tweets.size.should == 1000
+      @ta.tweets.first.is_a?(Twitter::Status)
+    end
+    it "should parse those tweets" do
+      @ta.parsed_tweets.size.should > 1000
+      @ta.parsed_tweets.first.is_a?(String)
+    end
+    it "should sort the words" 
   end
 end
