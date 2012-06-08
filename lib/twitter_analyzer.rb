@@ -1,5 +1,4 @@
 require 'twitter'
-require 'ruby-debug'
 
 class WordCounter
   attr_reader :word_list
